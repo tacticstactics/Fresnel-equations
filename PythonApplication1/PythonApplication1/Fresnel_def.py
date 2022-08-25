@@ -11,9 +11,9 @@ def proc1(param=0.01,m=512):
     c = 2.99792458E+14 # um / s
 
 
-    stepaoi = 0.15; # degree
+    steptheta1 = 0.18; # degree
 
-    aoicol = np.zeros((m,1)); # aoi. Angle Of Incidence
+    theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
 
     PTscol = np.zeros((m,1)); # PowerTrans
     
@@ -35,24 +35,28 @@ def proc1(param=0.01,m=512):
 
     for ii in range(m):
 
-        aoi = ii * stepaoi
-        aoicol[(ii)] = aoi
+        theta1 = ii * steptheta1
+        theta1col[(ii)] = theta1
 
-        cosi = math.cos(3.14*aoi/180)
-        cost = (n1*cosi)/n2
+        costheta1=math.cos(3.14*theta1/180)
+               
         
-        rs = (n1*cosi-n2*cost)/(n1*cosi+n2*cost)
-        ts = (2*n1*cosi)/(n1*cosi+n2*cost)
+        theta2 = math.asin(n1*math.sin((3.14*theta1/180)*180/3.14))
+
+        costheta2 = math.cos(3.14*theta2/180)
+
+        rs = (n1*costheta1-n2*costheta2)/(n1*costheta1+n2*costheta2)
+        ts = (2*n1*costheta1)/(n1*costheta1+n2*costheta2)
 
         #Er = re1+(te1*te2*re2)*np.exp(1j*sigma)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
         #Et = (te1*te2)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
         
 
         #Reflect
-        PRs = abs(rs)**2
+        PRs = (rs)**2
         PRscol[(ii)]=PRs
 
-        PTs = abs(ts)**2
+        PTs = (ts)**2
         PTscol[(ii)]=PTs
 
 
@@ -68,6 +72,6 @@ def proc1(param=0.01,m=512):
         #Etphasecol[(ii)] = Etphase     
 
 
-    return aoicol, PTscol, PRscol, PTpcol, PRpcol
+    return theta1col, PTscol, PRscol, PTpcol, PRpcol
 
 
