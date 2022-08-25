@@ -1,17 +1,17 @@
 
 
-#Fresnel-equations_main.py
+#Fresnel_main.py
 
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-import Fresnel-equations_def
+import Fresnel_def
 
 param = 0.001
 m = 512
 
-wlcol,PTetacol,PRetacol,Etphasecol,Erphasecol = Fresnel-equations_def.proc1(param,m)
+aoicol, PTscol, PRscol, PTpcol, PRpcol = Fresnel_def.proc1(param,m)
 
 print('')
 print('Etalon_Phase_main.py')
@@ -25,10 +25,10 @@ ax2 = fig.add_subplot(2, 2, 2, sharey=ax1)
 ax3 = fig.add_subplot(2, 2, 3)
 ax4 = fig.add_subplot(2, 2, 4, sharey=ax3)
 
-ax1.plot(wlcol,PTetacol)
-ax2.plot(wlcol,PRetacol)
-ax3.plot(wlcol,Etphasecol)
-ax4.plot(wlcol,Erphasecol)
+ax1.plot(aoicol,PTscol)
+ax2.plot(aoicol,PRscol)
+ax3.plot(aoicol,PTpcol)
+ax4.plot(aoicol,PRpcol)
 
 #ax3.plot(wlcol,np.real(Signalcol))
 

@@ -1,0 +1,73 @@
+
+#Fresnel-equations_def.py
+
+import numpy as np
+import math
+import cmath
+
+def proc1(param=0.01,m=512):
+
+    global c
+    c = 2.99792458E+14 # um / s
+
+
+    stepaoi = 0.15; # degree
+
+    aoicol = np.zeros((m,1)); # aoi. Angle Of Incidence
+
+    PTscol = np.zeros((m,1)); # PowerTrans
+    
+    PRscol = np.zeros((m,1)); # PowerReflection
+
+    PTpcol = np.zeros((m,1)); # Phase of Trans E
+
+    PRpcol = np.zeros((m,1)); # Phase of Refleced E
+       
+    #Signalcol = np.ones(m, dtype=complex);#*2
+
+    # PRe1 must be higher than PRe2 because this is assuming air to glass incidence.
+
+    n1 = 1;
+    n2 = 1.5;
+
+    
+
+
+    for ii in range(m):
+
+        aoi = ii * stepaoi
+        aoicol[(ii)] = aoi
+
+        cosi = math.cos(3.14*aoi/180)
+        cost = (n1*cosi)/n2
+        
+        rs = (n1*cosi-n2*cost)/(n1*cosi+n2*cost)
+        ts = (2*n1*cosi)/(n1*cosi+n2*cost)
+
+        #Er = re1+(te1*te2*re2)*np.exp(1j*sigma)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
+        #Et = (te1*te2)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
+        
+
+        #Reflect
+        PRs = abs(rs)**2
+        PRscol[(ii)]=PRs
+
+        PTs = abs(ts)**2
+        PTscol[(ii)]=PTs
+
+
+        #Erphase = cmath.phase(Er)
+        #Erphasecol[(ii)] = Erphase
+        
+        #Trans
+        #conjEt = Et.conjugate()
+        #PT = abs(Et)**2
+        #PTetacol[(ii)]=PT
+
+        #Etphase = cmath.phase(Et)
+        #Etphasecol[(ii)] = Etphase     
+
+
+    return aoicol, PTscol, PRscol, PTpcol, PRpcol
+
+
