@@ -1,5 +1,5 @@
 
-#Fresnel-equations_def.py
+#Fresnel-Reflection_def.py
 
 import numpy as np
 import math
@@ -11,9 +11,14 @@ def proc1(param=0.01,m=512):
     c = 2.99792458E+14 # um / s
 
 
-    steptheta1 = 0.18; # degree
+    steptheta1 = 0.35; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
+    theta2col = np.zeros((m,1))
+
+    rscol = np.zeros((m,1))
+    
+    tscol = np.zeros((m,1))
 
     PTscol = np.zeros((m,1)); # PowerTrans
     
@@ -39,24 +44,29 @@ def proc1(param=0.01,m=512):
         theta1col[(ii)] = theta1
 
         costheta1=math.cos(3.14*theta1/180)
-               
         
-        theta2 = math.asin(n1*math.sin((3.14*theta1/180)*180/3.14))
+        
+        theta2 = math.asin((n1/n2)*math.sin(3.14*theta1/180))*180/3.14
+        theta2col[(ii)] = theta2
 
         costheta2 = math.cos(3.14*theta2/180)
+        
 
         rs = (n1*costheta1-n2*costheta2)/(n1*costheta1+n2*costheta2)
+        rscol[(ii)] = rs
+
         ts = (2*n1*costheta1)/(n1*costheta1+n2*costheta2)
+        tscol[(ii)] = ts
 
         #Er = re1+(te1*te2*re2)*np.exp(1j*sigma)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
         #Et = (te1*te2)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
         
 
         #Reflect
-        PRs = (rs)**2
+        PRs = (np.abs(rs))**2
         PRscol[(ii)]=PRs
 
-        PTs = (ts)**2
+        PTs = (n2/n1)*(costheta2/costheta1)*(np.abs(ts))**2
         PTscol[(ii)]=PTs
 
 
@@ -72,6 +82,8 @@ def proc1(param=0.01,m=512):
         #Etphasecol[(ii)] = Etphase     
 
 
-    return theta1col, PTscol, PRscol, PTpcol, PRpcol
+
+
+    return theta1col, theta2col, rscol, tscol, PTscol, PRscol, PTpcol, PRpcol
 
 
