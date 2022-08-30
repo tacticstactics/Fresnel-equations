@@ -14,7 +14,7 @@ m = 512
 theta1col, PTscol, PRscol, PTpcol, PRpcol = Fresnel_def.proc1(param,m)
 
 print('')
-print('Etalon_Phase_main.py')
+print('Fresnel_Reflection_main.py')
 print('')
 
 fig = plt.figure(figsize = (10,6), facecolor='lightblue')
