@@ -25,7 +25,7 @@ def proc1(param=0.01,m=512):
     PTpcol = np.zeros((m,1)); # Phase of Trans E
 
     PRpcol = np.zeros((m,1)); # Phase of Refleced E
-       
+
     # n2 must be higher than n1 because this is assuming air to glass incidence.
 
     n1 = 1;
