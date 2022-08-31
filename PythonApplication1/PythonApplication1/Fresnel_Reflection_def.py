@@ -7,18 +7,16 @@ import cmath
 
 def proc1(param=0.01,m=512):
 
-    global c
-    c = 2.99792458E+14 # um / s
-
-
     steptheta1 = 0.35; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
     theta2col = np.zeros((m,1))
 
     rscol = np.zeros((m,1))
+    rpcol = np.zeros((m,1))
     
     tscol = np.zeros((m,1))
+    tpcol = np.zeros((m,1))
 
     PTscol = np.zeros((m,1)); # PowerTrans
     
@@ -28,14 +26,10 @@ def proc1(param=0.01,m=512):
 
     PRpcol = np.zeros((m,1)); # Phase of Refleced E
        
-    #Signalcol = np.ones(m, dtype=complex);#*2
-
-    # PRe1 must be higher than PRe2 because this is assuming air to glass incidence.
+    # n2 must be higher than n1 because this is assuming air to glass incidence.
 
     n1 = 1;
-    n2 = 1.5;
-
-    
+    n2 = 1.5;  
 
 
     for ii in range(m):
@@ -55,19 +49,28 @@ def proc1(param=0.01,m=512):
         rs = (n1*costheta1-n2*costheta2)/(n1*costheta1+n2*costheta2)
         rscol[(ii)] = rs
 
+        PRs = (np.abs(rs))**2
+        PRscol[(ii)]=PRs
+        
         ts = (2*n1*costheta1)/(n1*costheta1+n2*costheta2)
         tscol[(ii)] = ts
 
-        #Er = re1+(te1*te2*re2)*np.exp(1j*sigma)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
-        #Et = (te1*te2)*(1+re2**2*np.exp(1j*1*sigma)+re2**4*np.exp(1j*2*sigma)+re2**6*np.exp(1j*3*sigma)+re2**8*np.exp(1j*4*sigma)+re2**10*np.exp(1j*5*sigma));
-        
-
-        #Reflect
-        PRs = (np.abs(rs))**2
-        PRscol[(ii)]=PRs
-
         PTs = (n2/n1)*(costheta2/costheta1)*(np.abs(ts))**2
         PTscol[(ii)]=PTs
+
+
+
+        rp = (n2*costheta1-n1*costheta2)/(n2*costheta1+n1*costheta2)
+        rpcol[(ii)] = rp
+
+        PRp = (np.abs(rp))**2
+        PRpcol[(ii)]=PRp
+
+        tp = (2*n1*costheta1)/(n2*costheta1+n1*costheta2)
+        tpcol[(ii)] = tp
+
+        PTp = (n2/n1)*(costheta2/costheta1)*(np.abs(tp))**2      
+        PTpcol[(ii)]=PTp
 
 
         #Erphase = cmath.phase(Er)
@@ -79,11 +82,8 @@ def proc1(param=0.01,m=512):
         #PTetacol[(ii)]=PT
 
         #Etphase = cmath.phase(Et)
-        #Etphasecol[(ii)] = Etphase     
+        #Etphasecol[(ii)] = Etphase         
 
-
-
-
-    return theta1col, theta2col, rscol, tscol, PTscol, PRscol, PTpcol, PRpcol
+    return theta1col, theta2col, rscol, tscol, rpcol, tpcol, PRscol, PTscol, PRpcol, PTpcol
 
 
