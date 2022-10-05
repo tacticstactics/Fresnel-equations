@@ -24,18 +24,18 @@ ax3 = fig.add_subplot(2, 2, 3)
 ax4 = fig.add_subplot(2, 2, 4, sharey=ax3)
 
 ax1.plot(theta1col,PRscol,theta1col,PRpcol)
-ax1.set_ylabel("Reflection")
+ax1.set_ylabel("Power Amplitude of Reflection")
 
 ax2.plot(theta1col,PTscol,theta1col,PTpcol)
-ax2.set_ylabel("Transmission")
+ax2.set_ylabel("Power Amplitude of Transmission")
 
 ax3.plot(theta1col,rscol,theta1col,rpcol)
 ax3.set_xlabel("Angle of Incidence")
-ax3.set_ylabel("reflection")
+ax3.set_ylabel("Phase of reflection")
 
 ax4.plot(theta1col,tscol,theta1col,tpcol)
 ax4.set_xlabel("Angle of Incidence")
-ax4.set_ylabel("transmission")
+ax4.set_ylabel("Phase of transmission")
 
 plt.show()
 
