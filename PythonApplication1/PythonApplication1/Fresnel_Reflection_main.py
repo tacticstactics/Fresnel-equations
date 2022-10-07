@@ -25,9 +25,11 @@ ax4 = fig.add_subplot(2, 2, 4, sharey=ax3)
 
 ax1.plot(theta1col,PRscol,theta1col,PRpcol)
 ax1.set_ylabel("Power Amplitude of Reflection")
+ax1.set_ylim(0,1)
 
 ax2.plot(theta1col,PTscol,theta1col,PTpcol)
 ax2.set_ylabel("Power Amplitude of Transmission")
+ax2.set_ylim(0,1)
 
 ax3.plot(theta1col,rscol,theta1col,rpcol)
 ax3.set_xlabel("Angle of Incidence")

@@ -7,7 +7,7 @@ import math
 
 def proc1(param=0.01,m=512):
 
-    steptheta1 = 0.36; # degree
+    steptheta1 = 0.163036; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
     theta2col = np.zeros((m,1))
@@ -26,10 +26,10 @@ def proc1(param=0.01,m=512):
 
     PRpcol = np.zeros((m,1)); # Phase of Refleced E
 
-    # n2 must be higher than n1 because this is assuming air to glass incidence.
+    # n2 must be higher than n1 because this code is assuming air to glass incidence.
 
-    n1 = 1;
-    n2 = 1.5;  
+    n1 = 1.5;
+    n2 = 1;  
 
 
     for ii in range(m):
@@ -40,7 +40,7 @@ def proc1(param=0.01,m=512):
         costheta1=math.cos(math.pi*theta1/180)
         
         
-        theta2 = math.asin((n1/n2)*math.sin(math.pi*theta1/180))*180/3.14
+        theta2 = math.asin((n1/n2)*math.sin(math.pi*theta1/180))*(180/math.pi)
         theta2col[(ii)] = theta2
 
         costheta2 = math.cos(math.pi*theta2/180)
