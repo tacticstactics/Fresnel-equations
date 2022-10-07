@@ -7,7 +7,8 @@ import math
 
 def proc1(param=0.01,m=512):
 
-    steptheta1 = 0.163036; # degree
+    #steptheta1 = 0.163036; # degree
+    steptheta1 = 0.36; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
     theta2col = np.zeros((m,1))
@@ -28,8 +29,8 @@ def proc1(param=0.01,m=512):
 
     # n2 must be higher than n1 because this code is assuming air to glass incidence.
 
-    n1 = 1.5;
-    n2 = 1;  
+    n1 = 1;
+    n2 = 1.5;  
 
 
     for ii in range(m):
