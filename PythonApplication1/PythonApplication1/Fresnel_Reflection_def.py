@@ -3,11 +3,11 @@
 
 import numpy as np
 import math
-import cmath
+
 
 def proc1(param=0.01,m=512):
 
-    steptheta1 = 0.35; # degree
+    steptheta1 = 0.36; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
     theta2col = np.zeros((m,1))
@@ -37,13 +37,13 @@ def proc1(param=0.01,m=512):
         theta1 = ii * steptheta1
         theta1col[(ii)] = theta1
 
-        costheta1=math.cos(3.14*theta1/180)
+        costheta1=math.cos(math.pi*theta1/180)
         
         
-        theta2 = math.asin((n1/n2)*math.sin(3.14*theta1/180))*180/3.14
+        theta2 = math.asin((n1/n2)*math.sin(math.pi*theta1/180))*180/3.14
         theta2col[(ii)] = theta2
 
-        costheta2 = math.cos(3.14*theta2/180)
+        costheta2 = math.cos(math.pi*theta2/180)
         
 
         rs = (n1*costheta1-n2*costheta2)/(n1*costheta1+n2*costheta2)
