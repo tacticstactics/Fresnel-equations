@@ -46,6 +46,7 @@ def proc1(param=0.01,m=512):
 
         costheta2 = math.cos(math.pi*theta2/180)
         
+        # S Polarization
 
         rs = (n1*costheta1-n2*costheta2)/(n1*costheta1+n2*costheta2)
         rscol[(ii)] = rs
@@ -59,7 +60,7 @@ def proc1(param=0.01,m=512):
         PTs = (n2/n1)*(costheta2/costheta1)*(np.abs(ts))**2
         PTscol[(ii)]=PTs
 
-
+        # P Polarization
 
         rp = (n2*costheta1-n1*costheta2)/(n2*costheta1+n1*costheta2)
         rpcol[(ii)] = rp
