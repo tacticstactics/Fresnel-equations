@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.32804.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PythonApplication1", "PythonApplication1\PythonApplication1.pyproj", "{44261D62-AE2F-4919-B808-B21193F07F75}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Fresnel_Reflection", "PythonApplication1\Fresnel_Reflection.pyproj", "{44261D62-AE2F-4919-B808-B21193F07F75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
