@@ -29,8 +29,8 @@ def proc1(param=0.01,m=512):
 
     # n2 must be higher than n1 because this code is assuming air to glass incidence.
 
-    n1 = 1;
-    n2 = 1.5;  
+    n1 = 1
+    n2 = 1.5
 
 
     for ii in range(m):
