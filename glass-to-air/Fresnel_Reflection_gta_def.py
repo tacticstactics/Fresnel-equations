@@ -8,7 +8,7 @@ import math
 def proc1(param=0.01,m=512):
 
     #steptheta1 = 0.163036; # degree
-    steptheta1 = 42/m; # degree
+    steptheta1 = 43/m; # degree
 
     theta1col = np.zeros((m,1)); # aoi. Angle Of Incidence
     theta2col = np.zeros((m,1))
