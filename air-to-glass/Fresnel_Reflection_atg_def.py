@@ -1,6 +1,4 @@
 
-#Fresnel-Reflection_def.py
-
 import numpy as np
 import math
 
